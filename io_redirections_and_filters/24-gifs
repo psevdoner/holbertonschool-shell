@@ -1,2 +1,9 @@
 #!/bin/bash
-find . -type f -name "*.gif" -printf "%f\n" | sort -bf | sed 's/\.gif$//'
+
+find . -type f -iname "*.gif" | while IFS= read -r file; do
+    # Fayl adını path-dən çıxarır
+    name="${file##*/}"
+    # .gif uzantısını silir (case-insensitive)
+    echo "${name%.[Gg][Ii][Ff]}"
+done | sort -f
+
